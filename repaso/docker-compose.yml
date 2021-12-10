@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  repaso:
+    build:
+      context: .
+    image: repaso
+    container_name: repaso
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./settings.env
+    depends_on:
+      - postgres
+
+#  frontend:
+#    build:
+#      context: ./frontend
+#    image: hsdecker_frontend
+#    container_name: frontend
+#    volumes:
+#      - ./frontend:/app
+#    ports:
+#      - "8080:8080"
+#
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./settings.env
+
+
+
